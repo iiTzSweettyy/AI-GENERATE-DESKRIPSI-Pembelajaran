@@ -1,8 +1,5 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/main.py" },
-    { "source": "/", "destination": "/Frontend/index.html" },
-    { "source": "/style.css", "destination": "/Frontend/style.css" },
-    { "source": "/script.js", "destination": "/Frontend/script.js" }
+    { "source": "/api/(.*)", "destination": "/api/main.py" }
   ]
 }
