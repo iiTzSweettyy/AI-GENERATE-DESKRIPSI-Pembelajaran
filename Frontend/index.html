@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Deskripsi KBC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#e9e4d4] min-h-screen flex justify-center p-4 font-sans text-gray-800">
+
+    <div class="bg-[#f9f8f3] w-full max-w-md rounded-3xl shadow-lg p-6 space-y-6 h-fit">
+        <h2 class="text-xl font-bold text-center text-gray-700">Form Deskripsi KBC</h2>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Mata Pelajaran</label>
+            <input type="text" id="mapel" class="w-full border border-gray-300 rounded-lg p-3 bg-white focus:outline-none focus:ring-2 focus:ring-teal-600" placeholder="Contoh: Matematika, PAI, dll...">
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Pilih Fase</label>
+            <select id="fase" class="w-full border border-gray-300 rounded-lg p-3 bg-white focus:outline-none focus:ring-2 focus:ring-teal-600">
+                <option value="" disabled selected>Pilih fase kelas...</option>
+                <option value="Fase A: Kelas 1">Fase A: Kelas 1</option>
+                <option value="Fase A: Kelas 2">Fase A: Kelas 2</option>
+                <option value="Fase B: Kelas 3">Fase B: Kelas 3</option>
+                <option value="Fase B: Kelas 4">Fase B: Kelas 4</option>
+                <option value="Fase C: Kelas 5">Fase C: Kelas 5</option>
+                <option value="Fase C: Kelas 6">Fase C: Kelas 6</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Tujuan Pembelajaran</label>
+            <textarea id="tujuan" rows="3" class="w-full border border-gray-300 rounded-lg p-3 bg-white focus:outline-none focus:ring-2 focus:ring-teal-600" placeholder="Tuliskan Tujuan Pembelajaran ....."></textarea>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Kurikulum berbasis Cinta (Panca Cinta)</label>
+            <div class="flex flex-wrap gap-2" id="panca-cinta-container">
+                <div class="pill" onclick="toggleSelection(this, 'cinta')">Cinta Alloh dan Rosulnya</div>
+                <div class="pill" onclick="toggleSelection(this, 'cinta')">Cinta Lingkungan</div>
+                <div class="pill" onclick="toggleSelection(this, 'cinta')">Cinta Tanah Air</div>
+                <div class="pill" onclick="toggleSelection(this, 'cinta')">Cinta Ilmu</div>
+                <div class="pill" onclick="toggleSelection(this, 'cinta')">Cinta Diri dan Sesama</div>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Dimensi Profil Lulusan</label>
+            <div class="flex flex-wrap gap-2" id="dimensi-container">
+                <div class="pill" onclick="toggleSelection(this, 'dimensi')">Keimanan dan Ketakwaan</div>
+                <div class="pill" onclick="toggleSelection(this, 'dimensi')">Kewargaan</div>
+                <div class="pill" onclick="toggleSelection(this, 'dimensi')">Penalaran Kritis</div>
+                <div class="pill" onclick="toggleSelection(this, 'dimensi')">Kreativitas</div>
+                <div class="pill" onclick="toggleSelection(this, 'dimensi')">Kolaborasi</div>
+                <div class="pill" onclick="toggleSelection(this, 'dimensi')">Kemandirian</div>
+                <div class="pill" onclick="toggleSelection(this, 'dimensi')">Kesehatan</div>
+                <div class="pill" onclick="toggleSelection(this, 'dimensi')">Komunikasi</div>
+            </div>
+        </div>
+
+        <div class="pt-4 space-y-3">
+            <button id="btn-generate" onclick="generateDeskripsi()" class="w-full bg-[#115e59] hover:bg-[#0f4c48] text-white font-semibold py-3 rounded-xl transition duration-200">
+                Generate Tujuan Pembelajaran KBC
+            </button>
+            <button onclick="resetForm()" class="w-full bg-[#e5e7eb] hover:bg-[#d1d5db] text-gray-700 font-semibold py-3 rounded-xl transition duration-200">
+                Reset Form
+            </button>
+        </div>
+
+        <div class="bg-[#f0ece1] rounded-xl p-4 mt-2 border border-gray-200">
+            <h3 class="text-sm font-bold text-gray-700 mb-2">Hasil Deskripsi</h3>
+            <p id="hasil-output" class="text-sm text-gray-600 italic">Output AI akan muncul di sini...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
