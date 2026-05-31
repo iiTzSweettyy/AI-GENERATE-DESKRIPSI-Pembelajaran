@@ -81,7 +81,7 @@ async function generateDeskripsi() {
     };
 
     try {
-        const response = await fetch('http://localhost:8000/api/generate-kbc', {
+        const response = await fetch('/api/generate-kbc', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
