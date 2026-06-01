@@ -58,16 +58,37 @@ async def generate_kbc(request: KBCRequest):
         Jangan tambahkan kata pengantar apapun, jangan gunakan penomoran 1,2,3.
         """
         
-        response = client.models.generate_content(
-            model='gemini-2.5-flash',
-            contents=prompt,
-        )
+        # --- STRATEGI 4 NYAWA ANTI-LIMIT ---
+        daftar_model = [
+            'gemini-3.1-flash-lite',
+            'gemini-3.5-flash',
+            'gemini-3-flash',
+            'gemini-2.5-flash'
+        ]
         
-        # Memecah respons AI menjadi array berdasarkan pemisah |||
+        response = None
+        error_terakhir = None
+
+        for nama_model in daftar_model:
+            try:
+                print(f"Mencoba generate menggunakan {nama_model}...")
+                response = client.models.generate_content(
+                    model=nama_model,
+                    contents=prompt,
+                )
+                print(f"Sukses! Berhasil menggunakan model: {nama_model}")
+                break  
+            except Exception as e:
+                error_terakhir = e
+                print(f"Model {nama_model} gagal/limit. Beralih ke model berikutnya...")
+
+        if response is None:
+            raise Exception(f"Semua model Gemini sibuk/limit. Error: {error_terakhir}")
+        
+        # --- MEMECAH RESPONS AI ---
         hasil_teks = response.text
         variasi_list = [teks.strip() for teks in hasil_teks.split('|||') if teks.strip()]
         
-        # Jika AI gagal memisah dengan |||, jadikan 1 array utuh
         if len(variasi_list) == 0:
             variasi_list = [hasil_teks.strip()]
 
